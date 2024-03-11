@@ -1,0 +1,1 @@
+export const SUCCESS_MSG = (name) => `Thank you! ${name} Your contact form has been successfully submitted.`

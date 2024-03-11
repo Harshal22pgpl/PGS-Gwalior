@@ -1,0 +1,57 @@
+{
+  "careers": [
+    {
+      "title": "Software Engineer",
+      "description": "As a software engineer, you will be responsible for designing, coding, testing, and maintaining software systems.",
+      "skills": ["Python", "Java", "JavaScript", "SQL"],
+      "salary": "120,000"
+    },
+    {
+      "title": "Data Scientist",
+      "description": "As a data scientist, you will be responsible for using data-driven approaches to solve complex problems.",
+      "skills": ["Python", "R", "SQL", "Machine Learning"],
+      "salary": "140,000"
+    },
+    {
+      "title": "UI/UX Designer",
+      "description": "As a UI/UX designer, you will be responsible for creating user interfaces and experiences that are intuitive and visually appealing.",
+      "skills": ["Sketch", "Adobe XD", "HTML/CSS", "Prototyping"],
+      "salary": "90,000"
+    },
+    {
+      "title": "Product Manager",
+      "description": "As a product manager, you will be responsible for planning, executing, and closing product cycles.",
+      "skills": [
+        "Marketing",
+        "Business Analysis",
+        "User Experience",
+        "Strategic Planning"
+      ],
+      "salary": "100,000"
+    },
+    {
+      "title": "Data Scientist",
+      "description": "As a data scientist, you will be responsible for using data-driven approaches to solve complex problems.",
+      "skills": ["Python", "R", "SQL", "Machine Learning"],
+      "salary": "140,000"
+    },
+    {
+      "title": "Data Scientist",
+      "description": "As a data scientist, you will be responsible for using data-driven approaches to solve complex problems.",
+      "skills": ["Python", "R", "SQL", "Machine Learning"],
+      "salary": "140,000"
+    },
+    {
+      "title": "Data Scientist",
+      "description": "As a data scientist, you will be responsible for using data-driven approaches to solve complex problems.",
+      "skills": ["Python", "R", "SQL", "Machine Learning"],
+      "salary": "140,000"
+    },
+    {
+      "title": "Data Scientist",
+      "description": "As a data scientist, you will be responsible for using data-driven approaches to solve complex problems.",
+      "skills": ["Python", "R", "SQL", "Machine Learning"],
+      "salary": "140,000"
+    }
+  ]
+}

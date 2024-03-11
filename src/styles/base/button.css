@@ -1,0 +1,44 @@
+/* Your existing Tailwind CSS setup */
+
+/* Button styles */
+.btn {
+  @apply py-0 text-teal-400 px-4 border-2 border-transparent rounded-md text-base cursor-pointer transition-all duration-300 ease-in-out;
+}
+
+/* Button color variations */
+.btn-primary {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-secondary {
+  @apply bg-teal-600 text-white;
+}
+
+.btn-tertiary {
+  @apply bg-gray-600 text-white;
+}
+
+/* Additional button sizes */
+.btn-large {
+  @apply py-3 px-6 text-xl;
+}
+
+.btn-small {
+  @apply py-2 px-4 text-sm;
+}
+
+/* Hover effects */
+.btn:hover {
+  @apply transform translate-y-[-2px] shadow-md;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn {
+    @apply text-sm py-2 px-4;
+  }
+
+  .btn-large {
+    @apply py-3 px-6 text-lg;
+  }
+}

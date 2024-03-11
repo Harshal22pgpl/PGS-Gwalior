@@ -1,0 +1,45 @@
+{
+  "name": "pgpl-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "SET SERVER_ENV=DEV && next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@nextui-org/react": "^2.2.9",
+    "@tailwindcss/forms": "^0.5.7",
+    "@vercel/analytics": "^1.1.1",
+    "aos": "^2.3.4",
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.0",
+    "react-icons": "^4.12.0",
+    "react-modal": "^3.16.1",
+    "react-player": "^2.14.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.22.1",
+    "react-slick": "^0.30.2",
+    "react-toastify": "^10.0.4",
+    "tw-elements-react": "^1.0.0-alpha2",
+    "yet-another-react-lightbox": "^3.15.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
+    "@babel/preset-react": "^7.23.3",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
+  }
+}

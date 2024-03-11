@@ -1,0 +1,8 @@
+
+.primary-theme {
+    @apply bg-teal-200;
+  }
+  
+.primary{
+    @apply bg-[#065e49];
+}

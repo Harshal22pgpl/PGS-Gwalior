@@ -1,0 +1,35 @@
+/* Container styles */
+/* Small Container */
+.container-small {
+    @apply min-w-full min-h-screen; /* Example classes for small container */
+    /* Add specific styles for small container */
+  }
+  
+  /* Medium Container */
+  .container-medium {
+    @apply w-10 h-20; /* Example classes for medium container */
+    /* Add specific styles for medium container */
+  }
+  
+  /* Large Container */
+  .container-large {
+    @apply min-w-full min-h-screen; /* Example classes for large container */
+    /* No specific styles for large container in this example */
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (min-width: 640px) {
+    /* Styles for medium screens (sm) */
+    .container-small {
+      /* Adjust styles for small container on medium screens */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    /* Styles for medium screens (md) */
+    .container-medium {
+      /* Adjust styles for medium container on larger screens */
+    }
+  }
+  
+  /* You can add more media queries for other screen sizes as needed */
