@@ -48,7 +48,7 @@ const EventSection = () => {
     },
     {
       id: 6,
-      image: "/events/price_distrubution/_DSC1386.JPG",
+      image:  "/events/sac_race/_DSC0934.JPG",
       title: "Price destribution",
       description: "Description for Different Card 2",
     },

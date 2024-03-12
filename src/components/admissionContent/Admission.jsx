@@ -23,9 +23,12 @@ const AdmissionForm = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
-    "/events/bannerCarousel/jpeg-optimizer__DSC0444.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC0752.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC1401.JPG",
+    "/Gwal_Img/1 (15).jpg",
+    "/Gwal_Img/1 (1).jpg",
+    "/Gwal_Img/1 (4).jpg",
+    "/Gwal_Img/1 (6).jpg",
+    "/Gwal_Img/1 (12).jpg",
+   
     // Add more images as needed
   ];
 
@@ -73,27 +76,27 @@ const AdmissionForm = () => {
   const sliderImages = [
     {
       id: 1,
-      url: "/gallarySlider/jpeg-optimizer_PGS_0670-min.JPG",
+      url: "/Gwal_Img/1 (30).jpg",
     },
     {
       id: 2,
-      url: "/gallarySlider/jpeg-optimizer_IMG-20240103-WA0052-min.jpg",
+      url: "/Gwal_Img/1 (15).jpg",
     },
     {
       id: 3,
-      url: "/gallarySlider/jpeg-optimizer_PGS_0806-min.JPG",
+      url:  "/Gwal_Img/1 (28).jpg",
     },
     {
       id: 4,
-      url: "/gallarySlider/jpeg-optimizer_IMG-20240103-WA0035-min.jpg",
+      url: "/Gwal_Img/1 (3).jpg",
     },
     {
       id: 5,
-      url: "/gallarySlider/jpeg-optimizer_PGS_0623-min.JPG",
+      url: "/Gwal_Img/1 (2).jpg",
     },
     {
       id: 6,
-      url: "/gallarySlider/jpeg-optimizer_DSC_0519-min.JPG",
+      url: "/Gwal_Img/1 (14).jpg",
     },
   ];
 

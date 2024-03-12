@@ -160,19 +160,19 @@ export default function page() {
                 "Promoting physical fitness, coordination, and teamwork.",
             },
             {
-              image: "/labsImages/art.jpg",
+              image: "/Gwal_Img/1 (5).jpg",
               headings: "Art and Crafts",
               paragraph:
                 "Encouraging creativity through various art forms and crafts.",
             },
             {
-              image: "/labsImages/languageArt.jpg",
+              image: "/Gwal_Img/1 (4).jpg",
               headings: "Language Art",
               paragraph:
                 "Reading, writing, storytelling, and communication skills.",
             },
             {
-              image: "/labsImages/social.jpg",
+              image: "/Gwal_Img/1 (1).jpg",
               headings: "Social Studeies",
               paragraph:
                 "Cultivating an understanding of diverse cultures and communities.",

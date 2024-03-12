@@ -5,6 +5,7 @@ import Image from "next/image";
 import HeadingText from "@/components/HeadingText/heading";
 import CardSvgParagraph from "@/components/CardSvgParagraph/BenefitCard";
 import EventSection from "./EventSection";
+import CulturalEvent from "../CulturalEvent/CulturalEvent";
 
 const EventMain = () => {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -12,9 +13,11 @@ const EventMain = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
-    "/events/bannerCarousel/jpeg-optimizer__DSC0752.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC1401.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC0444.JPG",
+    "/Gwal_Img/1 (6).jpg",
+    "/Gwal_Img/1 (12).jpg",
+    "/Gwal_Img/1 (1).jpg",
+    "/Gwal_Img/1 (15).jpg",
+    
     // Add more images as needed
   ];
 
@@ -175,6 +178,21 @@ const EventMain = () => {
           </div>
         </div>
       </div>
+
+      <section>
+        <div className="p-8 md:p-12 lg:p-16 text-center ">
+          {/* <h1 className='border-2 border-black rounded-lg p-2 text-center'>Our features</h1> */}
+          <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-gray-800 mb-4">
+            Cultural Events
+          </h1>
+          <p className="text-lg md:text-xl lg:text-xl text-gray-600 mx-auto max-w-2xl">
+          Cultural events at schools are an integral part of the educational experience, offering students opportunities to explore and celebrate diversity, creativity, and tradition. These events foster a sense of community, promote understanding of different cultures, and provide platforms for students to showcase their talents and interests. Here's some content about cultural events at school
+          </p>
+          
+        </div>
+        <CulturalEvent/>
+        
+      </section>
 
       <section>
         <div className="p-8 md:p-12 lg:p-16 text-center ">

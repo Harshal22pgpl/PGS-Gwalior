@@ -14,10 +14,13 @@ const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
-    "/Testimonials/jpeg-optimizer__DSC0426.JPG",
-    "/Testimonials/jpeg-optimizer__DSC0431.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC0444.JPG",
-    "/events/bannerCarousel/jpeg-optimizer__DSC1401.JPG",
+    "/Gwal_Img/1 (15).jpg",
+    "/Gwal_Img/1 (13).jpg",
+    "/Gwal_Img/1 (10).jpg",
+    "/Gwal_Img/1 (16).jpg",
+    "/Gwal_Img/1 (2).jpg",
+    "/Gwal_Img/1 (11).jpg",
+
     // Add more images as needed
   ];
 
@@ -92,27 +95,27 @@ const About = () => {
   const sliderImage = [
     {
       id: 1,
-      url: "/gallarySlider/jpeg-optimizer_DSC_0519-min.JPG",
+      url: "/Gwal_Img/1 (15).jpg",
     },
     {
       id: 2,
-      url: "/gallarySlider/jpeg-optimizer_IMG-20240103-WA0035-min.jpg",
+      url: "/Gwal_Img/1 (1).jpg",
     },
     {
       id: 3,
-      url: "/gallarySlider/jpeg-optimizer_IMG-20240103-WA0049-min.jpg",
+      url: "/Gwal_Img/1 (4).jpg",
     },
     {
       id: 4,
-      url: "/gallarySlider/jpeg-optimizer_IMG-20240103-WA0052-min.jpg",
+      url: "/Gwal_Img/1 (6).jpg",
     },
     {
       id: 5,
-      url: "/gallarySlider/jpeg-optimizer_PGS_0163-min.JPG",
+      url: "/Gwal_Img/1 (12).jpg",
     },
     {
       id: 6,
-      url: "/gallarySlider/jpeg-optimizer_PGS_0623-min.JPG",
+      url: "/Gwal_Img/1 (31).jpg",
     },
   ];
 
