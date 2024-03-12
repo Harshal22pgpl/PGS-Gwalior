@@ -157,7 +157,7 @@ const Dashboard = ({ clientProps }) => {
                 <tbody>
                   <tr className="text-gray-700 dark:text-gray-100">
                     <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                      GWALIOR
+                      Indore
                     </th>
                     <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       5,480
@@ -575,11 +575,11 @@ const Dashboard = ({ clientProps }) => {
                     <span
                       className={`px-2 py-1 font-semibold leading-tight   ${
                         user.isActive
-                          ? "bg-teal-100 text-teal-700"
+                          ? "bg-green-100 text-green-700"
                           : "bg-red-700 text-white"
                       } rounded-full dark:${
-                        user.isActive ? "bg-teal-700" : "bg-red-700"
-                      } dark:text-teal-100`}
+                        user.isActive ? "bg-green-700" : "bg-red-700"
+                      } dark:text-green-100`}
                     >
                       {user.isActive ? "Approved" : "Not -Approved"}{" "}
                     </span>

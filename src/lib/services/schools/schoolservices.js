@@ -20,11 +20,11 @@ export const getSchools = async () => {
     handleError(error);
   }
 };
-export const getSchoolDetails = async()=>{
+export const getSchoolDetails = async () => {
   try {
-    let res = await api.get(`${SCHOOLS}/GWALIOR`)
-    return res.data.payload
+    let res = await api.get(`${SCHOOLS}/indore`);
+    return res.data.payload;
   } catch (error) {
-    handleError(error)
+    handleError(error);
   }
-}
+};
