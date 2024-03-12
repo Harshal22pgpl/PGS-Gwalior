@@ -39,14 +39,14 @@ const Footer = () => {
                     href="https://pratibha-global-school.vercel.app/"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    PGS-GWALIOR
+                    PGS-Indore
                   </Link>
                 </li>
 
                 <li>
                   <Link
                     target="_blank"
-                    href="https://pgs-bagli-02.vercel.app/"
+                    href="https://pgs-bagli-one.vercel.app/"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     PGS-Bagli
@@ -56,7 +56,7 @@ const Footer = () => {
                 <li>
                   <Link
                     target="_blank"
-                    href="https://pgs-sonkatch-1.vercel.app/"
+                    href="https://pgs-sonkatch.vercel.app/"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     PGS-Sonkatch
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li>
                   <Link
                     target="_blank"
-                    href="https://pgs-gwaliour.vercel.app"
+                    href="https://pgs-gwalior.vercel.app/"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     PGS-Gwalior
