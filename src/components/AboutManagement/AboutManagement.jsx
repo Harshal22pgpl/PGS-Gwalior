@@ -36,8 +36,8 @@ export default function AboutManagement() {
               link="/about/about-leaders"
             />
             <AboutManagementCard
-              img="/Mgt/principal.png"
-              name="Mrs. Sapna Jain"
+              img="/Mgt/principal.jpg"
+              name=" Mr Vikas Gupta"
               post="Principal (Pratibha Global School, GWALIOR)"
               link="/about/principals-message"
             />
