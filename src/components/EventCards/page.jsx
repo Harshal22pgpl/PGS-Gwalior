@@ -31,9 +31,8 @@ const EventList = () => {
         const school = await getSchoolDetails();
         const schoolUuid = school?.uuid;
         const eventData = await getEvent({ schoolUuid, limit: 6, page });
-      
+
         setEventList(eventData.data);
-        console.log(eventData.data);
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {

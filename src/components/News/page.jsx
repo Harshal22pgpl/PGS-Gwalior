@@ -1,10 +1,11 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { getAllNews } from "@/lib/services/news/index";
-import NewNewsCard from '@/components/Card/NewNewsCard'
+import NewNewsCard from "@/components/Card/NewNewsCard";
 import Pagination from "@/components/Pagination/Pagination";
+import { getSchoolDetails } from "@/lib/services/schools/schoolservices";
 
 const NewsList = ({ newsList }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +25,7 @@ const NewsList = ({ newsList }) => {
 
   return (
     <>
-     <div
+      <div
         className="w-full bg-white mb-5 bg-cover "
         style={{ backgroundImage: "url('/Rect Light.svg')" }}
       >
@@ -40,7 +41,7 @@ const NewsList = ({ newsList }) => {
                             </p> */}
           </div>
         </div>
-        </div>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-auto">
         {paginatedNewsList.map((news) => (
           <NewNewsCard key={news.id} news={news} />
@@ -64,7 +65,9 @@ const NewsPage = () => {
     const fetchNews = async () => {
       try {
         setIsLoading(true);
-        const newsData = await getAllNews();
+        const school = await getSchoolDetails();
+        const schoolUuid = school?.uuid;
+        const newsData = await getAllNews(schoolUuid);
         setNewsList(newsData);
       } catch (error) {
         console.error("Error fetching news:", error);
