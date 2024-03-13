@@ -48,7 +48,7 @@ const EventTable = ({ events, onDelete, onEdit }) => {
               Title
             </th>
             <th scope="col" className="px-6 py-3">
-              Description
+              Descriptionsch
             </th>
             <th scope="col" className="px-6 py-3">
               Action
