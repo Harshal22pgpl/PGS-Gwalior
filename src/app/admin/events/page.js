@@ -14,7 +14,9 @@ export default async function page() {
   const clientProps = {};
   clientProps.isFailed = isFailed;
   let school = await getSchoolDetails();
-  let schoolUuid = school.uuid
+ 
+  let schoolUuid = school?.uuid;
+  
   if (!isFailed) {
     let schools = [];
     if (profie?.userType === "ADMIN") {
