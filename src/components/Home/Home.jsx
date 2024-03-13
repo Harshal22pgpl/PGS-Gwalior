@@ -10,7 +10,7 @@ import ImageGallery from "@/components/ImageHomeGallary/ImageHomeGallary";
 import LatestNews from "@/components/News/NewsSection";
 import ModalHome from "@/components/ModalHome/ModalHome";
 
-export default function Home({school}) {
+export default function Home({ school }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
     "/homeGallary/HeroSectionImage2.png",
@@ -31,11 +31,11 @@ export default function Home({school}) {
     };
   }, [currentSlide]);
 
-  useEffect(()=>{
-   if(school){
-    window?.localStorage?.setItem('id', school?.uuid)
-   }
-  },[])
+  useEffect(() => {
+    if (school) {
+      window?.localStorage?.setItem("id", school?.uuid);
+    }
+  }, []);
 
   const videoUrl = "https://www.youtube.com/watch?v=SswUBzdyT9E";
 

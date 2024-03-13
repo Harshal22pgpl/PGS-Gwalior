@@ -22,7 +22,7 @@ export const getSchools = async () => {
 };
 export const getSchoolDetails = async () => {
   try {
-    let res = await api.get(`${SCHOOLS}/indore`);
+    let res = await api.get(`${SCHOOLS}/GWALIOUR`);
     return res.data.payload;
   } catch (error) {
     handleError(error);

@@ -6,39 +6,38 @@ import { getEvent } from "@/lib/services/events/eventSevices";
 import { getAllNotice } from "@/lib/services/notices/index";
 import Link from "next/link";
 
-export default function LatestNews({schoolUuid=''}) {
+export default function LatestNews({ schoolUuid = "" }) {
   const [newsData, setNewsData] = useState([]);
   const [eventData, setEventData] = useState([]);
-  const [notice,setNoticeData] = useState([])
+  const [notice, setNoticeData] = useState([]);
   const [mixedData, setMixedData] = useState([]);
   const listRef = useRef(null);
 
   const fetchNews = async () => {
-      const newsDatas = await getAllNews(schoolUuid);
-      const newsItemsWithType = newsDatas.map((news) => ({
-        ...news,
-        type: "news",
-      }));
-      setNewsData(newsItemsWithType);
+    const newsDatas = await getAllNews(schoolUuid);
+    const newsItemsWithType = newsDatas.map((news) => ({
+      ...news,
+      type: "news",
+    }));
+    setNewsData(newsItemsWithType);
   };
 
-
   const fetchNotice = async () => {
-      const notice = await getAllNotice(schoolUuid);
-      const noticeItemsWithType = notice.map((notices) => ({
-        ...notices,
-        type: "news",
-      }));
-      setNoticeData(noticeItemsWithType);
+    const notice = await getAllNotice(schoolUuid);
+    const noticeItemsWithType = notice.map((notices) => ({
+      ...notices,
+      type: "news",
+    }));
+    setNoticeData(noticeItemsWithType);
   };
 
   const fetchEvents = async (page) => {
-      const eventData = await getEvent({ schoolUuid,limit: 6, page });
-      const eventItemsWithType = eventData.data.map((event) => ({
-        ...event,
-        type: "event",
-      }));
-      setEventData(eventItemsWithType);
+    const eventData = await getEvent({ schoolUuid, limit: 6, page });
+    const eventItemsWithType = eventData.data.map((event) => ({
+      ...event,
+      type: "event",
+    }));
+    setEventData(eventItemsWithType);
   };
   useEffect(() => {
     const listElement = listRef.current;
@@ -72,7 +71,7 @@ export default function LatestNews({schoolUuid=''}) {
 
   useEffect(() => {
     // Mix news and event data only once
-    const mixedArray = [...newsData, ...eventData,...notice];
+    const mixedArray = [...newsData, ...eventData, ...notice];
     setMixedData(shuffleArray(mixedArray));
   }, [newsData, eventData, notice]);
 
@@ -121,7 +120,7 @@ export default function LatestNews({schoolUuid=''}) {
 }
 
 const ListItem = ({ item }) => {
-  const { title, date, thumbNail, type ,file,description } = item;
+  const { title, date, thumbNail, type, file, description } = item;
 
   return (
     <li className="border-gray-400 flex flex-col">
