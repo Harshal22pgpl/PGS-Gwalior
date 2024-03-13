@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getEvent } from "@/lib/services/events/eventSevices";
 import Card from "@/components/Card/Card";
 import NewEventCard from "../Card/NewEventCard";
+import { getSchoolDetails } from "@/lib/services/schools/schoolservices";
 
 const EventCard = ({ events }) => {
   return (
@@ -22,11 +23,15 @@ const limit = 5,
 const EventList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [eventList, setEventList] = useState([]);
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
-        const eventData = await getEvent({ limit, page });
+        const school = await getSchoolDetails();
+        const schoolUuid = school?.uuid;
+        const eventData = await getEvent({ schoolUuid, limit: 6, page });
+      
         setEventList(eventData.data);
         console.log(eventData.data);
       } catch (error) {
@@ -44,8 +49,8 @@ const EventList = () => {
           <p>Loading Events...</p>
         ) : (
           <>
-            {eventList.map((event) => (
-              <NewEventCard event={event} />
+            {eventList.map((eventList) => (
+              <NewEventCard event={eventList} />
             ))}
           </>
         )}
