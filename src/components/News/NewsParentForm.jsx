@@ -10,7 +10,13 @@ const NewsPage = ({ clientProps }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedNewsId, setSelectedNewsId] = useState(null);
-  const {schools=[], schoolUuid='', profie={}, newsList=[]} = clientProps
+  const {
+    schools = [],
+    schoolUuid = "",
+    profie = {},
+    newsList = [],
+  } = clientProps;
+  const [news, setNewsList] = useState(clientProps.newsList);
   const fetchNews = async () => {
     try {
       setIsLoading(true);
@@ -20,6 +26,15 @@ const NewsPage = ({ clientProps }) => {
       console.error("Error fetching news:", error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    try {
+      const updatedNewsList = await getAllNews(schoolUuid);
+      setNewsList(updatedNewsList);
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
   };
 
@@ -65,14 +80,10 @@ const NewsPage = ({ clientProps }) => {
         schoolUuid={schoolUuid}
         profile={profie}
         selectedNewsId={selectedNewsId}
-        onFormSubmit={fetchNews}
-        newsList={newsList}
+        onFormSubmit={handleFormSubmit}
+        newsList={news}
       />
-      <NewsTable
-        newsList={newsList}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-      />
+      <NewsTable newsList={news} onDelete={handleDelete} onEdit={handleEdit} />
     </div>
   );
 };

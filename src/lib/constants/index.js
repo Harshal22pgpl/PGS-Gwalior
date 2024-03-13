@@ -22,9 +22,9 @@ export const NEWSINITAIL = {
 
 
 export const NOTICES ={
-  "title": "Mid term  test",
-  "file": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-  "description": "MST - 1",
+  "title": " ",
+  "file": " ",
+  "description": " ",
   "endDate": moment().format("YYYY-MM-DD HH:mm:ss")
 }
 

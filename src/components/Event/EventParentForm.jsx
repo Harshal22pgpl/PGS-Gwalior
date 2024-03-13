@@ -1,27 +1,23 @@
-"use client";
+'use client'
+
 import React, { useState, useEffect } from "react";
 import { getEvent, deleteEvent } from "@/lib/services/events/eventSevices";
-// import EventForm from '@/components/UploadEvents/EventForm/EventForm';
-// import EventTable from '@/components/UploadEvents/EventTable/EventTable'
 import { getAuthToken } from "@/lib/middleware/apiInceptor";
 import EventForm from "@/components/Event/EventForm";
 import EventTable from "@/components/Event/EventTable";
 
-const EventParent = () => {
+const EventParent = ({ clientProps }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [events, setEventList] = useState([]); // Corrected the name to setEventList
-  const [allEvents, setAllEvents] = useState(); // Renamed setEvents to setAllEvents
-
+  const [allEvents, setAllEvents] = useState([]);
+  const { schools = [], schoolUuid = '', profie = {}, events = [] } = clientProps
   const [selectedEventId, setSelectedEventId] = useState(null);
+
   const fetchEvents = async (page) => {
     try {
       setIsLoading(true);
-      const eventData = await getEvent({ limit: 6, page });
-
-      // Access the events array under the 'data' property
+      const eventData = await getEvent({ schoolUuid, limit: 25, page });
       const eventsArray = Array.isArray(eventData.data) ? eventData.data : [];
-
-      setEventList(eventsArray);
+      setAllEvents(eventsArray);
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {
@@ -35,19 +31,14 @@ const EventParent = () => {
       await deleteEvent(uuid);
       fetchEvents();
     } catch (error) {
-      console.error("Error deleting news:", error);
+      console.error("Error deleting event:", error);
     } finally {
       setIsLoading(false);
     }
   };
-
-  const handleEdit = async (uuid) => {
-    fetchEvents();
+  
+  const handleEdit = (uuid) => {
     setSelectedEventId(uuid);
-  };
-
-  const handleFormSubmit = () => {
-    fetchEvents();
   };
 
   useEffect(() => {
@@ -61,7 +52,7 @@ const EventParent = () => {
         setIsLoading(true);
         await fetchEvents();
       } catch (error) {
-        console.error("Error fetching news:", error);
+        console.error("Error fetching events:", error);
       } finally {
         setIsLoading(false);
       }
@@ -71,14 +62,18 @@ const EventParent = () => {
   }, []);
 
   return (
-    <div className="news-page">
+    <div className="events-page">
       <EventForm
-        onFormSubmit={handleFormSubmit}
-        events={events}
+        schools={schools}
+        schoolUuid={schoolUuid}
+        profile={profie}
+        onFormSubmit={fetchEvents}
+        events={allEvents}
         selectedEventId={selectedEventId}
       />
-      <EventTable events={events} onDelete={handleDelete} onEdit={handleEdit} />
+      <EventTable events={allEvents} onDelete={handleDelete} onEdit={handleEdit} />
     </div>
   );
 };
+
 export default EventParent;
