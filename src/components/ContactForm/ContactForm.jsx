@@ -13,19 +13,19 @@ import { scrollToTop } from "@/lib/helpers/scrollToTopOfContainer";
 const contactMethods = [
   {
     imageUrl: "/message.svg",
-    value: "admission@lnctGWALIOR.com",
+    value: "pratibhaglobalgwl@gmail.com",
   },
   {
     imageUrl: "/phone.svg",
-    value: "+91 7024104142",
+    value: "+91 7880189992",
   },
   {
     imageUrl: "/hours.svg",
-    value: "Hours 7:50 AM - 2:30 PM",
+    value: "Hours 8.30 AM - 1:30 PM",
   },
   {
     imageUrl: "/location.svg",
-    value: "BHAWARASALA GWALIOR",
+    value: " Gram Ratwai, Chitora Road , Morar, Gwalior (MP)",
   },
 ];
 const ContactForm = () => {
@@ -108,14 +108,14 @@ const ContactForm = () => {
                         key={index}
                         className="p-4 bg-white shadow-md rounded-md"
                       >
-                        <div className="flex justify-start gap-5">
+                        <div className="flex justify-start gap-3">
                           <div
                             className=" w-10 h-10 rounded-full bg-cover bg-center"
                             style={{
                               backgroundImage: `url(${method.imageUrl})`,
                             }}
                           ></div>
-                          <p className="mt-2 text-gray-600 text-sm">
+                          <p className="mt-2 w-9/12 text-gray-600 text-sm">
                             {method.value}
                           </p>
                         </div>
@@ -206,8 +206,7 @@ const ContactForm = () => {
                     <div className="flex flex-col">
                       <h2 className="text-2xl">Main Office</h2>
                       <p className="text-gray-400">
-                        BHAWARASALA , BEHIND ARVINDO REVATI, Sanwer Rd, GWALIOR,
-                        Madhya Pradesh 453555
+                        Gram Ratwai, Chitora Road , Morar, Gwalior (MP)
                       </p>
                     </div>
                   </div>
@@ -218,8 +217,8 @@ const ContactForm = () => {
                     </div>
                     <div className="flex flex-col">
                       <h2 className="text-2xl">Call Us</h2>
-                      <p className="text-gray-400">Tel:+917024104142</p>
-                      <p className="text-gray-400">Fax:+917024104150</p>
+                      <p className="text-gray-400">Tel:+917880189992</p>
+                      <p className="text-gray-400">Fax:+91 758380100</p>
                     </div>
                   </div>
 

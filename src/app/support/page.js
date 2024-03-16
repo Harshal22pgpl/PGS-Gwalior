@@ -134,7 +134,7 @@ export default function page() {
                                     </div>
                                     <div className="flex flex-col">
                                         <h2 className="text-2xl">Main Office</h2>
-                                        <p className="text-gray-400">BHAWARASALA , BEHIND ARVINDO REVATI, Sanwer Rd, GWALIOR, Madhya Pradesh 453555</p>
+                                        <p className="text-gray-400"> Gram Ratwai, Chitora Road , Morar, Gwalior (MP)</p>
                                     </div>
                                 </div>
 
@@ -144,8 +144,8 @@ export default function page() {
                                     </div>
                                     <div className="flex flex-col">
                                         <h2 className="text-2xl">Call Us</h2>
-                                        <p className="text-gray-400">Tel:+917024104142</p>
-                                        <p className="text-gray-400">Fax:+917024104150</p>
+                                        <p className="text-gray-400">Tel:+917880189992</p>
+                                        <p className="text-gray-400">Fax:+91 758380100</p>
                                     </div>
                                 </div>
 

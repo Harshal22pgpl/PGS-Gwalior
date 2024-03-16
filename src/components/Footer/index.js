@@ -202,7 +202,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    admission@lnctGWALIOR.com
+                    pratibhaglobalgwl@gmail.com
                   </Link>
                 </li>
                 <li>
@@ -210,7 +210,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    +91 7024104142
+                    +91 7880189992
                   </Link>
                 </li>
 
@@ -219,8 +219,8 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    Main Office BHAWARASALA , BEHIND ARVINDO REVATI, Sanwer Rd,
-                    GWALIOR, Madhya Pradesh 453555
+                     Gram Ratwai, Chitora Road , Morar, Gwalior (MP)
+                   
                   </Link>
                 </li>
               </ul>

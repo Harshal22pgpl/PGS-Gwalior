@@ -33,6 +33,7 @@ const NewsPage = ({ clientProps }) => {
     try {
       const updatedNewsList = await getAllNews(schoolUuid);
       setNewsList(updatedNewsList);
+      setSelectedNewsId(null);
     } catch (error) {
       console.error("Error submitting form:", error);
     }
