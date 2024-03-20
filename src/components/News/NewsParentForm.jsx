@@ -83,6 +83,7 @@ const NewsPage = ({ clientProps }) => {
         selectedNewsId={selectedNewsId}
         onFormSubmit={handleFormSubmit}
         newsList={news}
+        setSelectedNewsId={setSelectedNewsId}
       />
       <NewsTable newsList={news} onDelete={handleDelete} onEdit={handleEdit} />
     </div>

@@ -23,7 +23,6 @@ const limit = 5,
 const EventList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [eventList, setEventList] = useState([]);
-
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -31,8 +30,8 @@ const EventList = () => {
         const school = await getSchoolDetails();
         const schoolUuid = school?.uuid;
         const eventData = await getEvent({ schoolUuid, limit: 6, page });
-
         setEventList(eventData.data);
+       
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
@@ -48,8 +47,8 @@ const EventList = () => {
           <p>Loading Events...</p>
         ) : (
           <>
-            {eventList.map((eventList) => (
-              <NewEventCard event={eventList} />
+            {eventList.map((event) => (
+              <NewEventCard event={event} />
             ))}
           </>
         )}

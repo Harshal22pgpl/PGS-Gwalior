@@ -28,7 +28,7 @@ const AdmissionForm = () => {
     "/Gwal_Img/1 (4).jpg",
     "/Gwal_Img/1 (6).jpg",
     "/Gwal_Img/1 (12).jpg",
-   
+
     // Add more images as needed
   ];
 
@@ -84,7 +84,7 @@ const AdmissionForm = () => {
     },
     {
       id: 3,
-      url:  "/Gwal_Img/1 (28).jpg",
+      url: "/Gwal_Img/1 (28).jpg",
     },
     {
       id: 4,
@@ -373,45 +373,67 @@ const AdmissionForm = () => {
                       <tbody className="divide-y divide-gray-200 dark:divide-gray-700 text-center shadow-xl">
                         <tr>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
-                            Nursery to KG-2
+                            Play Group
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            03 - 06
+                            02-03
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            15000/Year
+                            13500/Year
                           </td>
                         </tr>
 
                         <tr>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                            I - V
+                            Nursery
                           </td>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-800">
-                            06 - 12
+                            03-04
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            17500/Year
+                            14500/Year
                           </td>
                         </tr>
 
                         <tr>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
-                            VI - VIII
+                            KG-1
                           </td>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-800">
-                            12 - 14
+                            04-05
                           </td>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-800">
-                            20000/Year
+                            16500/Year
                           </td>
                         </tr>
                         <tr>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
-                            IX - X
+                            KG-2
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            14 - 16
+                            05-06
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            18500/Year
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
+                            1st - 2nd
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            06-08
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            20500/Year
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
+                            3rd - 4th
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            08-10
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
                             22500/Year
@@ -419,13 +441,24 @@ const AdmissionForm = () => {
                         </tr>
                         <tr>
                           <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
-                            XI - XII
+                            5th - 6th
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            16 - 18
+                            10-12
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                            25000/Year
+                            24500/Year
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className=" px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-800">
+                            7th - 8th
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            12-14
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                            26500/Year
                           </td>
                         </tr>
                       </tbody>
