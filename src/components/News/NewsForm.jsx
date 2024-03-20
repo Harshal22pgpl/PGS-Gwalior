@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { addNews, updateNews } from "@/lib/services/news/index";
 import Loader from "@/components/Loader/Loader";
 import Notification from "@/components/Toast/Notification";
@@ -37,12 +37,15 @@ const fields = [
   },
 ];
 
-const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
+const NewsForm = ({ selectedNewsId,setSelectedNewsId, onFormSubmit, newsList, ...others }) => {
+
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setError] = useState({ msg: "", type: "" });
+  const [validationErrors, setValidationErrors] = useState({});
+  const fileInputRef = useRef(null);
   const [newsData, setNewsData] = useState({
     ...NEWSINITAIL,
-    publishedDate: moment().format("YYYY-MM-DDTHH:mm:ss"), // Initialize with current date and time
+    publishedDate: moment().format("YYYY-MM-DDTHH:mm:ss"),
   });
   const { schools = [], schoolUuid = "", profile = {} } = others;
   const [organization, OrganizationDropDown, setOrganization] = useDropdown(
@@ -50,14 +53,14 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
     schoolUuid || first(schools).value,
     others?.schools || []
   );
+  const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
-    // If selectedNewsId is provided, populate the form with existing news data
+    // Populate form fields with selected news item details when selectedNewsId changes
     if (selectedNewsId) {
       const selectedNews = newsList.find(
         (news) => news.uuid === selectedNewsId
       );
-
       if (selectedNews) {
         setNewsData({
           title: selectedNews.title,
@@ -68,25 +71,47 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
           ),
           reDirectedLink: selectedNews.reDirectedLink,
         });
+        setIsEditMode(true);
       }
     }
   }, [selectedNewsId]);
 
+  const validateForm = () => {
+    const errors = {};
+    fields.forEach((field) => {
+      if (!newsData[field.name] && field.name !== "thumbNail") {
+        errors[field.name] = "This field is required";
+      }
+    });
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleChange = ({ target }) => {
     const { name, value } = target;
     if (name === "thumbNail") {
-      setNewsData((prev) => ({ ...prev, thumbNail: target.files[0] }));
+      setNewsData((prev) => ({
+        ...prev,
+        thumbNail: target.files.length > 0 ? target.files[0] : null,
+      }));
     } else {
       setError({ msg: "", type: "" });
-      // Handle special case for datetime-local input
-      const isDateTimeLocal = target.type === "datetime-local";
+      const isDateTimeLocal = target.type === "date-time";
       const rawValue = isDateTimeLocal ? moment(value).toISOString() : value;
       setNewsData((prev) => ({ ...prev, [name]: rawValue }));
     }
   };
 
+  const handleCancelEdit = () => {
+    setNewsData({ ...NEWSINITAIL });
+    setSelectedNewsId(null);
+    setIsEditMode(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return; // If form validation fails, don't submit
+
     let imgRes = await uploadImg({ img: newsData.thumbNail, category: "news" });
     if (imgRes) {
       const formattedDate = moment(newsData.publishedDate).toISOString();
@@ -96,13 +121,9 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
     }
     setError({ msg: "", type: "" });
 
-    // Format the publishedDate field
     const formattedDate = moment(newsData.publishedDate).toISOString();
-
     try {
       setIsLoading(true);
-
-      // If selectedNewsId is provided, update existing news, else add new news
       const res = selectedNewsId
         ? await updateNews({
             ...newsData,
@@ -118,11 +139,14 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
           });
       onFormSubmit();
     } catch (error) {
-      setIsLoading(false);
       setError({ msg: error.message || "An error occurred", type: "error" });
     } finally {
       setIsLoading(false);
       setNewsData({ ...NEWSINITAIL });
+    }
+    const fileInput = document.getElementById("thumbNail");
+    if (fileInput) {
+      fileInput.value = ""; // Reset value to empty string
     }
   };
 
@@ -140,17 +164,18 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
             {fields.map((field) => (
               <div
                 key={field.name}
-                className="w-full flex justify-center py-2 px-4"
+                className="w-full flex justify-center py-2 px-4 flex-col"
               >
                 <label
                   htmlFor={field.name}
-                  className={`w-32 md:w-40 lg:w-40 p-2 text-xl font-bold`}
+                  className={`w-32 md:w-40 lg:w-40 p-2 text-lg font-bold`}
                 >
                   {field.label}
                 </label>
                 <input
+                  ref={fileInputRef}
                   name={field.name}
-                  className="w-1/2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                  className="p-2 border border-gray-300 rounded-lg mb-2 focus:outline-none focus:border-gray-600 text-black"
                   id={field.name}
                   type={field.type}
                   value={
@@ -162,23 +187,43 @@ const NewsForm = ({ selectedNewsId, onFormSubmit, newsList, ...others }) => {
                   placeholder={field.placeholder}
                   required
                 />
+                {validationErrors[field.name] &&
+                  newsData[field.name].trim() === "" && (
+                    <span className="text-red-500 text-sm mt-1">
+                      {validationErrors[field.name]}
+                    </span>
+                  )}
               </div>
             ))}
             {profile.userType === ADMIN && <OrganizationDropDown />}
           </div>
-          <button
-            onClick={handleSubmit}
-            className="w-40 my-5 mx-auto p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:bg-tteal"
-          >
-            Submit
-          </button>
+          {isEditMode ? (
+            <div className="flex">
+              <button
+                onClick={handleSubmit}
+                className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:bg-tteal"
+              >
+                Update
+              </button>
+              <button
+                onClick={handleCancelEdit}
+                className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-red-400 hover:bg-red-500 text-white"
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleSubmit}
+              className="w-20 my-5 mx-auto font-bold p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-blue-400 text-white"
+            >
+              Submit
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Loading indicator */}
       {isLoading && <Loader />}
-
-      {/* Error notification */}
       {hasError.msg && (
         <Notification type={hasError.type} message={hasError.msg} />
       )}

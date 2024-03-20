@@ -5,6 +5,7 @@ import { getEvent, deleteEvent } from "@/lib/services/events/eventSevices";
 import { getAuthToken } from "@/lib/middleware/apiInceptor";
 import EventForm from "@/components/Event/EventForm";
 import EventTable from "@/components/Event/EventTable";
+import { set } from "lodash";
 
 const EventParent = ({ clientProps }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,6 +71,7 @@ const EventParent = ({ clientProps }) => {
         onFormSubmit={fetchEvents}
         events={allEvents}
         selectedEventId={selectedEventId}
+        setSelectedEventId={setSelectedEventId}
       />
       <EventTable events={allEvents} onDelete={handleDelete} onEdit={handleEdit} />
     </div>

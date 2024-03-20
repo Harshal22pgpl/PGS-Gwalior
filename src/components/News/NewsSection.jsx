@@ -95,7 +95,7 @@ export default function LatestNews({ schoolUuid = "" }) {
             <NewsCarousel mixedData={mixedData} />
           </div>
         </div>
-        <div className="gap-4 p-1 h-[382px] w-full">
+        <div className="gap-4 p-1 h-[430px] w-full bg-bteal">
           <div className="w-full">
             <h2 className="text-2xl bg-teal-400 p-2 text-center">
               Latest News ,Events & Notices
