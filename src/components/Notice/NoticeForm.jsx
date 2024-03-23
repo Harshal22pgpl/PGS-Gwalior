@@ -1,4 +1,5 @@
-"use client";
+
+'use client'
 import React, { useState, useEffect, useRef } from "react";
 import { addNotice, updateNotice } from "@/lib/services/notices/index";
 import Loader from "@/components/Loader/Loader";
@@ -140,12 +141,6 @@ const NoticeForm = ({ selectedNoticeId, setSelectedNoticeId, onFormSubmit, notic
           endDate: formattedDate,
           organizationUuid: organization || schoolUuid,
         });
-        await addNotice({
-          ...notice,
-          file: imgRes,
-          endDate: formattedDate,
-          organizationUuid: organization || schoolUuid,
-        });
       }
 
       onFormSubmit();
@@ -183,87 +178,85 @@ const NoticeForm = ({ selectedNoticeId, setSelectedNoticeId, onFormSubmit, notic
           Notice Details Form
         </h1>
         <div
-          className="w-11/12 rounded-lg flex flex-col justify-center items-center bg-bgreen opacity-75 p-5"
-          onSubmit={handleSubmit}
+          className="w-11/12 rounded-lg flex flex-col justify-center items-center bg-bteal opacity-75 p-5"
         >
-          <div className="w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
-          <div>
-            {profile.userType === ADMIN && <OrganizationDropDown />}
-            </div>
-            {fields.map((field) => (
-              <div key={field.name} className="w-full flex flex-col py-2 px-4">
-                <label htmlFor={field.name} className="w-32 md:w-40 lg:w-40 p-2 text-xl font-bold">
-                  {field.label}
-                </label>
-                {field.type === "file" ? (
-                  <>
+          <form onSubmit={handleSubmit}> {/* Ensure handleSubmit is bound to form submission */}
+            <div className="w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
+              <div>
+                {profile.userType === ADMIN && <OrganizationDropDown />}
+              </div>
+              {fields.map((field) => (
+                <div key={field.name} className="w-full flex flex-col py-2 px-4">
+                  <label htmlFor={field.name} className="w-32 md:w-40 lg:w-40 p-2 text-xl font-bold">
+                    {field.label}
+                  </label>
+                  {field.type === "file" ? (
+                    <>
+                      <input
+                        ref={fileInputRef}
+                        name={field.name}
+                        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                        id={field.name}
+                        type={field.type}
+                        onChange={handleChange}
+                        required
+                      />
+                      {prevImagePreview && (
+                        <div>
+                          <p className="font-medium text-lg mt-5">{prevImagePreviewText}</p>
+                          <img
+                            src={prevImagePreview}
+                            alt={prevImagePreviewText}
+                            style={{ maxWidth: "100px", marginTop: "10px" }}
+                          />
+                        </div>
+                      )}
+                    </>
+                  ) : (
                     <input
-                      ref={fileInputRef}
                       name={field.name}
-                      className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                      className={`p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black ${
+                        validationErrors[field.name] ? "border-red-500" : ""
+                      }`}
                       id={field.name}
                       type={field.type}
+                      value={notice[field.name]}
                       onChange={handleChange}
+                      placeholder={field.placeholder}
                       required
                     />
-                    {prevImagePreview && (
-                      <div>
-                        <p className="font-medium text-lg mt-5">{prevImagePreviewText}</p>
-                        <img
-                          src={prevImagePreview}
-                          alt={prevImagePreviewText}
-                          style={{ maxWidth: "100px", marginTop: "10px" }}
-                        />
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <input
-                    name={field.name}
-                    className={`p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black ${
-                      validationErrors[field.name] ? "border-red-500" : ""
-                    }`}
-                    id={field.name}
-                    type={field.type}
-                    value={notice[field.name]}
-                    onChange={handleChange}
-                    placeholder={field.placeholder}
-                    required
-                  />
-                )}
-                {validationErrors[field.name] && (
-                  <span className="text-red-500 text-sm mt-1">{validationErrors[field.name]}</span>
-                )}
-                
-              </div>
-
-              
-            ))}
-        
-          </div>
-          {isEditMode ? (
-            <div className="flex">
-              <button
-                onClick={handleSubmit}
-                className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:bg-tgreen"
-              >
-                Update
-              </button>
-              <button
-                onClick={handleCancelEdit}
-                className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-red-400 hover:bg-red-500 text-white"
-              >
-                Cancel
-              </button>
+                  )}
+                  {validationErrors[field.name] && (
+                    <span className="text-red-500 text-sm mt-1">{validationErrors[field.name]}</span>
+                  )}
+                </div>
+              ))}
             </div>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              className="w-20 my-5 mx-auto font-bold p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-blue-400 text-white"
-            >
-              Submit
-            </button>
-          )}
+            {isEditMode ? (
+              <div className="flex">
+                <button
+                  type="submit" 
+                  className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:bg-tteal"
+                >
+                  Update
+                </button>
+                <button
+                  type="button" 
+                  onClick={handleCancelEdit}
+                  className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-red-400 hover:bg-red-500 text-white"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-20 my-5 mx-auto font-bold p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-blue-400 text-white"
+              >
+                Submit
+              </button>
+            )}
+          </form>
         </div>
       </div>
       {isLoading && <Loader />}
