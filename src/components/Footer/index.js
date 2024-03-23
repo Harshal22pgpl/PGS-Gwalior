@@ -86,7 +86,7 @@ const Footer = () => {
                 <li>
                   <Link
                     target="_blank"
-                    href="https://pgs-dewas-01.vercel.app/"
+                    href="https://pgs-dewas-0.vercel.app/"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     PGS-Dewas

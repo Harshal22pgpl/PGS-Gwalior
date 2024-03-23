@@ -236,7 +236,7 @@ const NoticeForm = ({ selectedNoticeId, setSelectedNoticeId, onFormSubmit, notic
               <div className="flex">
                 <button
                   type="submit" 
-                  className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:bg-tteal"
+                  className="w-20 my-5 mx-2 p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-white hover:Foter"
                 >
                   Update
                 </button>
