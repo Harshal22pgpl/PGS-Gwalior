@@ -1,12 +1,11 @@
-// NewsCarousel.jsx
-"use client";
-import { getEvent } from "@/lib/services/events/eventSevices";
-import React, { useState, useEffect } from "react";
+'use client'
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const NewsCarousel = ({ mixedData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const totalItems = 10;
+  const totalItems = mixedData.length; // Set totalItems dynamically
+  const intervalRef = useRef(null);
 
   const nextSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % totalItems);
@@ -17,9 +16,19 @@ const NewsCarousel = ({ mixedData }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 3000);
+    const intervalId = setInterval(nextSlide, 3000);
+    intervalRef.current = intervalId;
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [totalItems]);
+
+  useEffect(() => {
+    // Clear interval when component unmounts
+    return () => {
+      clearInterval(intervalRef.current);
+    };
   }, []);
 
   return (
@@ -40,7 +49,7 @@ const NewsCarousel = ({ mixedData }) => {
             data-carousel-item={activeIndex === index ? "active" : undefined}
           >
             <img
-              src={data.thumbNail} // Assuming image filenames start from 1
+              src={data.thumbNail}
               className="absolute block h-72 w-full lg:min-h-[310px] lg:max-h-[310px] md:min-h-auto md:max-h-auto -translate-x-1/2 left-1/2 "
               alt={`Slide ${index + 1}`}
             />
@@ -68,10 +77,6 @@ const NewsCarousel = ({ mixedData }) => {
         onClick={nextSlide}
       >
         &gt; {/* Next button content */}
-      </button>
-
-      <button className="p-2 bg-teal-500 absolute -bottom-64 left-56  lg:bottom-4 lg:left-4 rounded-md ">
-        <Link href="/events">Events</Link>
       </button>
     </div>
   );
