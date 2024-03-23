@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useEffect, useRef, useState } from "react";
 import NewsCarousel from "../Carousel/NewsCarousel";
 import { getAllNews } from "@/lib/services/news/index";
@@ -10,12 +10,13 @@ export default function LatestNews({ schoolUuid = "" }) {
   const [newsData, setNewsData] = useState([]);
   const [eventData, setEventData] = useState([]);
   const [notice, setNoticeData] = useState([]);
+
   const [mixedData, setMixedData] = useState([]);
   const listRef = useRef(null);
 
   const fetchNews = async () => {
     const newsDatas = await getAllNews(schoolUuid);
-    const newsItemsWithType = newsDatas.map((news) => ({
+    const newsItemsWithType = newsDatas?.map((news) => ({
       ...news,
       type: "news",
     }));
@@ -23,27 +24,36 @@ export default function LatestNews({ schoolUuid = "" }) {
   };
 
   const fetchNotice = async () => {
-    const notice = await getAllNotice(schoolUuid);
-    const noticeItemsWithType = notice.map((notices) => ({
-      ...notices,
-      type: "news",
-    }));
-    setNoticeData(noticeItemsWithType);
+    try {
+      const notices = await getAllNotice("10193d2b-f7ef-4d54-b51d-488249f47fc2");
+      console.log(notices, "get from db");
+
+      // Assuming each notice object contains a 'file' property
+      const noticeItemsWithType = notices.map((notice) => ({
+        ...notice,
+        type: "notice",
+        thumbNail: notice.file, // Include the file property as thumbNail
+      }));
+
+      setNoticeData(noticeItemsWithType);
+    } catch (error) {
+      console.error("Error fetching notices:", error);
+    }
   };
 
   const fetchEvents = async (page) => {
     const eventData = await getEvent({ schoolUuid, limit: 6, page });
-    const eventItemsWithType = eventData.data.map((event) => ({
+    const eventItemsWithType = eventData?.data.map((event) => ({
       ...event,
       type: "event",
     }));
     setEventData(eventItemsWithType);
   };
+
   useEffect(() => {
     const listElement = listRef.current;
     const autoScroll = () => {
       listElement.scrollTop += 1;
-      // console.log('listElement.scrollHeight', listElement.scrollTop + listElement.clientHeight, listElement.scrollHeight,)
       if (
         listElement.scrollTop + listElement.clientHeight >=
         listElement.scrollHeight - 1
@@ -70,7 +80,7 @@ export default function LatestNews({ schoolUuid = "" }) {
   }, []);
 
   useEffect(() => {
-    // Mix news and event data only once
+    // Mix news, event, and notice data only once
     const mixedArray = [...newsData, ...eventData, ...notice];
     setMixedData(shuffleArray(mixedArray));
   }, [newsData, eventData, notice]);
@@ -92,15 +102,15 @@ export default function LatestNews({ schoolUuid = "" }) {
             Latest Update 2023-24
           </h2>
           <div className="w-full bg-slate-300 mx-auto">
-            <NewsCarousel mixedData={mixedData} />
+            <NewsCarousel mixedData={mixedData} length={mixedData.length} />
           </div>
         </div>
         <div className="gap-4 p-1 h-[430px] w-full bg-bteal">
-          <div className="w-full">
+          <div className="w-full h-full bg-bteal">
             <h2 className="text-2xl bg-teal-400 p-2 text-center">
               Latest News ,Events & Notices
             </h2>
-            <div className="bg-bteal h-full w-full mx-auto">
+            <div className="bg-bteal  w-full mx-auto">
               <div className="flex mx-auto w-full h-full items-center justify-center">
                 <ul
                   ref={listRef}
@@ -122,35 +132,61 @@ export default function LatestNews({ schoolUuid = "" }) {
 const ListItem = ({ item }) => {
   const { title, date, thumbNail, type, file, description } = item;
 
+  // Determine the route based on the item type
+  let route = '';
+  switch (type) {
+    case 'news':
+      route = '/newsCard';
+      break;
+    case 'event':
+      route = '/events';
+      break;
+    case 'notice':
+      route = '/';
+      break;
+    default:
+      route = '/';
+  }
+
   return (
     <li className="border-gray-400 flex flex-col">
-      <Link href={type === "news" ? "/news" : "/events"}>
-        <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-3 ">
+      <Link href={`${route}`}>
+        <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-start p-3 ">
           {thumbNail ? (
-            <div className="w-36 ">
+            <div className="w-36">
               <img
                 src={thumbNail}
                 className="flex flex-col h-[70px] rounded-md w-32 text-2xl bg-gray-300 text-black justify-center items-center mr-4"
                 alt={type === "news" ? "News Image" : "Event Image"}
               />
             </div>
+          ) : file ? (
+            <div className="w-36">
+              <img
+                src="/notice.png"
+                className="flex flex-col h-[70px] rounded-md w-32 text-2xl bg-gray-300 text-black justify-center items-center mr-4"
+                alt="Default Image"
+              />
+            </div>
           ) : (
-            <div className="flex flex-col max-h-[70px] rounded-md max-w-32 text-2xl bg-gray-300 text-black justify-center items-center mr-4">
-              No Image Available
+            <div className="w-36">
+              <div className="flex flex-col max-h-[70px] rounded-md max-w-32 text-2xl bg-gray-300 text-black justify-center items-center mr-4">
+                No Image Available
+              </div>
             </div>
           )}
-          <div className="flex flex-col mr-2">
-            <div className="font-bold text-sm">{title}</div>
+          <div className="flex flex-col items-start mr-2">
+            <div className="font-semibold text-xs line-clamp-3">{title}</div>
             <div className="text-gray-600 text-sm">{date}</div>
           </div>
           {type === "news" && (
-            <div className="bg-blue-200 rounded-md p-2">News</div>
+            <div className="bg-blue-200 text-xs rounded-md p-1">News</div>
           )}
           {type === "event" && (
-            <div className="bg-teal-200 rounded-md p-2">Event</div>
+            <div className="bg-teal-200 text-xs rounded-md p-1">Event</div>
           )}
           {type === "notice" && (
-            <div className="bg-teal-200 rounded-md p-2">Notice</div>
+            <div className="bg-teal-200 text-xs rounded-md p-1">Notice</div>
           )}
         </div>
       </Link>
