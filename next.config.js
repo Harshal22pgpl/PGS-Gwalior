@@ -5,6 +5,18 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
       },
+      images: {
+        remotePatterns: [
+          {
+            protocol: "http",
+            hostname: "res.cloudinary.com",
+          },
+          {
+            protocol: "https",
+            hostname: "www.belfercenter.org",
+          },
+        ],
+      },
 }
 
 module.exports = nextConfig
