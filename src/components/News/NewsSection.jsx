@@ -1,10 +1,13 @@
-'use client'
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import NewsCarousel from "../Carousel/NewsCarousel";
 import { getAllNews } from "@/lib/services/news/index";
 import { getEvent } from "@/lib/services/events/eventSevices";
 import { getAllNotice } from "@/lib/services/notices/index";
 import Link from "next/link";
+import Image from "next/image";
+import moment from "moment";
+
 
 export default function LatestNews({ schoolUuid = "" }) {
   const [newsData, setNewsData] = useState([]);
@@ -96,28 +99,68 @@ export default function LatestNews({ schoolUuid = "" }) {
           BE UPDATED ALL THE TIME
         </h5>
       </div>
-      <div className="flex flex-col gap-4 sm:flex-row w-full mt-10">
-        <div className="w-full sm:w-1/2 p-1 h-[350px]">
-          <h2 className="text-2xl bg-teal-400 p-2 text-center">
-            Latest Update 2023-24
-          </h2>
-          <div className="w-full bg-slate-300 mx-auto">
+      <div className="flex flex-col gap-4 sm:flex-row w-full mt-10 p-2">
+        <div className="w-full sm:w-1/2  h-[550px]">
+          <div className="w-full  mx-auto">
             <NewsCarousel mixedData={mixedData} length={mixedData.length} />
           </div>
         </div>
-        <div className="gap-4 p-1 h-[430px] w-full bg-bteal">
-          <div className="w-full h-full bg-bteal">
-            <h2 className="text-2xl bg-teal-400 p-2 text-center">
-              Latest News ,Events & Notices
-            </h2>
-            <div className="bg-bteal  w-full mx-auto">
+        <div className="gap-4 h-[550px] w-full shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2">
+          <div className="w-full h-full ">
+            <div className="  w-full mx-auto px-2">
               <div className="flex mx-auto w-full h-full items-center justify-center">
                 <ul
                   ref={listRef}
-                  className="bg-bteal w-full overflow-auto grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-4 p-1 max-h-[376px]"
+                  className=" w-full grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-6 max-h-[540px] overflow-scroll"
                 >
                   {mixedData.map((item, index) => (
-                    <ListItem key={index} item={item} />
+                    // <ListItem key={index} item={item} />
+                    <>
+                      {/* const { title, date, thumbNail, type, file, description } = item; */}
+                      <div className="w-full flex gap-2 px-2 ">
+                        <div className=" w-28 h-28 relative rounded-lg overflow-hidden">
+                          <Image src={item.thumbNail} fill />
+                        </div>
+                        <div className="w-9/12 justify-center p-2 items-start flex flex-col">
+                          <Link
+                            href={
+                              item.type === "news"
+                                ? `/newsDetailSection/newsDetail/${item.uuid}`
+                                : `/event/details/${item.uuid}`
+                            }
+                          >
+                            <h1 className=" text-sm font-bold hover:text-gray-600">
+                              {item.title}
+                            </h1>
+                          </Link>
+                          <div className=" flex justify-start py-4 items-center text-sm font-semibold">
+                            <h1 className="px-2 bg-gray-300 p-1 font-semibold rounded-lg capitalize">
+                              {item.type}
+                            </h1>
+                            {item.type === "event" && (
+                              <h1 className="px-4 text-blue-900">
+                                {moment(item.startDate).format("MMMM DD, YYYY")}
+                              </h1>
+                            )}
+                            {item.type === "notice" && (
+                              <h1 className="px-4 text-blue-900">
+                                {moment(item.publishedDate).format(
+                                  "MMMM DD, YYYY"
+                                )}
+                              </h1>
+                            )}
+
+                            {item.type === "news" && (
+                              <h1 className="px-4 text-blue-900">
+                                {moment(item.publishedDate).format(
+                                  "MMMM DD, YYYY"
+                                )}
+                              </h1>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
                   ))}
                 </ul>
               </div>

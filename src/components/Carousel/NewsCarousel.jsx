@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
@@ -34,11 +34,11 @@ const NewsCarousel = ({ mixedData }) => {
   return (
     <div
       id="controls-carousel"
-      className="relative w-full border-2"
+      className="relative w-full"
       data-carousel="static"
     >
       {/* Carousel wrapper */}
-      <div className="lg:min-h-[375px] lg:max-h-[375px] md:min-h-[375px]  md:max-h-[375px] p-2">
+      <div className="lg:min-h-[550px] lg:max-h-[375px] md:min-h-[375px]  md:max-h-[375px] ">
         {/* Render each carousel item */}
         {mixedData.map((data, index) => (
           <div
@@ -50,12 +50,12 @@ const NewsCarousel = ({ mixedData }) => {
           >
             <img
               src={data.thumbNail}
-              className="absolute block h-72 w-full lg:min-h-[310px] lg:max-h-[310px] md:min-h-auto md:max-h-auto -translate-x-1/2 left-1/2 "
+              className="absolute block  w-full lg:min-h-[550px] lg:max-h-[550px] md:min-h-auto md:max-h-auto -translate-x-1/2 left-1/2 "
               alt={`Slide ${index + 1}`}
             />
-            <p className="absolute m-auto top-60 text-black lg:bottom-20 rounded-lg font-bold text-xs bg-gray-100 p-4 left-2 text-center">
-              {data.title}
-            </p>
+            <div className="absolute m-auto bottom-2 text-black lg:bottom-20 rounded-lg font-bold text-xs bg-gray-100 p-2 left-2 text-center">
+              <h1>{data.title}</h1>
+            </div>
           </div>
         ))}
       </div>
