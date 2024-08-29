@@ -7,7 +7,7 @@ export default function AboutManagement() {
   const router = useRouter();
   return (
     <>
-      <div className="w-full mt-10 flex flex-col justify-center items-center">
+      <div className="w-full mt-9 flex flex-col justify-center items-center">
         <h1 className="text-center text-3xl font-bold mt-5">OUR MANAGEMENT</h1>
         <div className="w-full md:w-11/12 lg:w-10/12  mt-4 p-4">
           <div className="w-full grid lg:grid-cols-5 md:grid-cols-5 md:gap-5  lg:gap-5 grid-cols-1 ">
